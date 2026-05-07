@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "before-after-card",
+  "type": "registry:block",
+  "title": "Before / After Card",
+  "description": "A before/after image card with a footer badge.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "registry/turbopills/blocks/before-after-card/before-after-card.tsx",
+      "content": "\"use client\";\r\n\r\nimport * as React from \"react\";\r\nimport Image from \"next/image\";\r\nimport { Check } from \"lucide-react\";\r\n\r\nimport { cn } from \"@/lib/utils\";\r\nimport { Badge } from \"@/components/ui/badge\";\r\n\r\nexport interface BeforeAfterCardProps {\r\n  name: string;\r\n  beforeImage?: string;\r\n  afterImage?: string;\r\n  className?: string;\r\n  badgeContent?: React.ReactNode;\r\n}\r\n\r\nexport function BeforeAfterCard({\r\n  name,\r\n  beforeImage,\r\n  afterImage,\r\n  className,\r\n  badgeContent = (\r\n    <>\r\n      <Check className=\"size-4\" />\r\n      <span>Lost 28 lbs</span>\r\n    </>\r\n  ),\r\n}: BeforeAfterCardProps) {\r\n  return (\r\n    <div\r\n      className={cn(\r\n        \"w-90 h-89 flex flex-col rounded-xl overflow-hidden border border-border bg-card\",\r\n        className,\r\n      )}\r\n    >\r\n      <div className=\"flex items-stretch gap-px flex-1 min-h-0\">\r\n        <div className=\"flex-1 relative\">\r\n          {beforeImage ? (\r\n            <Image\r\n              src={beforeImage}\r\n              alt=\"Before\"\r\n              fill\r\n              className=\"w-full h-full object-cover rounded-tl-xl\"\r\n            />\r\n          ) : (\r\n            <div className=\"w-full h-full rounded-tl-xl bg-chart-4\" />\r\n          )}\r\n\r\n          <div className=\"absolute left-3 bottom-3\">\r\n            <Badge variant=\"default\" className=\"bg-chart-2\">\r\n              Before\r\n            </Badge>\r\n          </div>\r\n        </div>\r\n\r\n        <div className=\"flex-1 relative\">\r\n          {afterImage ? (\r\n            <Image\r\n              src={afterImage}\r\n              alt=\"After\"\r\n              fill\r\n              className=\"w-full h-full object-cover rounded-tr-xl\"\r\n            />\r\n          ) : (\r\n            <div className=\"w-full h-full rounded-tr-xl bg-chart-2\" />\r\n          )}\r\n\r\n          <div className=\"absolute left-3 bottom-3\">\r\n            <Badge variant=\"default\" className=\"bg-chart-4\">\r\n              After\r\n            </Badge>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div className=\"p-4 flex items-center justify-between shrink-0\">\r\n        <span className=\"font-semibold text-lg\">{name}</span>\r\n\r\n        {badgeContent && (\r\n          <Badge variant=\"default\" className=\"gap-1 text-base\">\r\n            {badgeContent}\r\n          </Badge>\r\n        )}\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:block",
+      "target": "components/turbopills/blocks/before-after-card.tsx"
+    }
+  ]
+}
